@@ -1,5 +1,25 @@
 # statistics
 
+## 2026-10-15 · 基率与阳性预测值（0.3.0）
+
+同一种检验，为什么在低患病率人群中，阳性仍可能多数是假阳性？
+
+```r
+library(statistics)
+medical_base_rate(c(.01, .05, .20), .90, .95)
+medical_base_rate_plot()
+medical_base_rate_html("base-rate.html")
+```
+
+假设敏感度90%、特异度95%，患病率从1%到5%、20%时，PPV分别为15.4%、48.6%、81.8%。这些是已知假设参数下的数学期望，非真实患者或临床验证。提供独立频数表、两种主题图和可离线调整参数的HTML；无新增依赖。
+
+[0.3.0安装包、离线HTML和教学小数据](https://github.com/Ellu03/statistics/releases/tag/v0.3.0)
+
+四平台R4.5.1检查、原生安装包全新库重装及结果/边界/绘图/HTML导出测试通过。HTML另经Edge桌面1440×1000和390×844窄屏验证，覆盖参数变更、零分母、非法输入和重置。
+
+![基率教学预览](https://github.com/Ellu03/statistics/releases/download/v0.3.0/base-rate-professional.png)
+
+
 简洁、可复现的统计与医学教学 R 包。公开仓库提供验证后的安装包、预览和精简说明；源码与测试由独立私有构建库保存。
 
 ## 医学统计与建模 · 0.2.0
