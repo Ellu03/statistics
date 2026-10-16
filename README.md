@@ -1,5 +1,20 @@
 # statistics
 
+## 2026-10-16 · Same rate, different precision (0.4.0)
+
+```r
+library(statistics)
+medical_proportion(c(9, 90, 900), c(10, 100, 1000))
+medical_proportion_plot(style="professional")
+```
+
+9/10, 90/100 and 900/1000 all give 90%, but their Wilson confidence intervals get narrower. These are individual 95% confidence intervals for independent binomial samples, not Bayesian credible intervals or tests of group differences. Zero observed successes does not establish zero underlying probability. Illustrative counts only; not clinical validation. Clustered, weighted and paired designs are not handled.
+
+[Four-platform binaries, example table and validation](https://github.com/Ellu03/statistics/releases/tag/v0.4.0)
+
+![Proportion precision](https://github.com/Ellu03/statistics/releases/download/v0.4.0/precision-professional.png)
+
+
 ## 2026-10-15 · 基率与阳性预测值（0.3.0）
 
 同一种检验，为什么在低患病率人群中，阳性仍可能多数是假阳性？
