@@ -1,5 +1,21 @@
 # statistics
 
+## 2026-10-19 · How precise is a sample median? (0.6.0)
+
+```r
+library(statistics)
+x <- read.csv("bootstrap-median-example.csv")$value
+medical_bootstrap_median(x, B = 4000, seed = 20261019)
+medical_bootstrap_plot(x, B = 4000, seed = 20261019)
+```
+
+In the reproducible simulated sample, median = 7.05, sample IQR = 4.625, and the percentile 95% bootstrap confidence interval is [6.10, 8.20]. IQR describes the spread of observations; the confidence interval describes uncertainty in the estimated median. Resampling assumes independent observations. Small or highly discrete samples can have inaccurate coverage; clustered and weighted samples are unsupported. Teaching example only, not clinical validation.
+
+[Four-platform binaries, simulated data and validation](https://github.com/Ellu03/statistics/releases/tag/v0.6.0)
+
+![Bootstrap median](https://github.com/Ellu03/statistics/releases/download/v0.6.0/bootstrap-median-professional.png)
+
+
 ## 2026-10-16 · Same rate, different precision (0.4.0)
 
 ```r
