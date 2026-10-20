@@ -1,5 +1,24 @@
 # statistics
 
+## 2026-10-20 · Same odds ratio, different absolute risk (0.7.0)
+
+```r
+library(statistics)
+medical_odds_risk(c(.01, .10, .30, .50), odds_ratio = 2)
+medical_odds_risk_plot(odds_ratio = 2)
+```
+
+OR = 2 implies risks of 18.18% and 66.67% at baseline risks of 10% and 50%, respectively. The corresponding risk ratios are 1.82 and 1.33. Risk differences are 8.18 and 16.67 percentage points. OR, risk ratio and absolute risk are distinct quantities.
+
+Conversion: p1 = OR * p0 / (1 - p0 + OR * p0). Inputs must refer to the same outcome, time horizon, population and covariate stratum. Applying an adjusted conditional OR to a population-average baseline does not generally give a marginal risk. No covariate standardization, uncertainty intervals or causal interpretation is provided. At baseline 0 or 1 the output uses limiting conventions; RR is undefined at baseline 0.
+
+The CSV contains known scenario probabilities plus independent simulated event counts (200 per group, seed 20261020). Plots use the known probabilities, not rates estimated from those counts. Teaching illustration only; no clinical validation. No new dependencies.
+
+[Four-platform binaries, example and verification](https://github.com/Ellu03/statistics/releases/tag/v0.7.0)
+
+![Odds and risk](https://github.com/Ellu03/statistics/releases/download/v0.7.0/odds-risk-professional.png)
+
+
 ## 2026-10-19 · How precise is a sample median? (0.6.0)
 
 ```r
