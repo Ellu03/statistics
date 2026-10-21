@@ -1,5 +1,30 @@
 # statistics
 
+## 2026-10-21 · One testing family, different error controls (0.8.0)
+
+```r
+library(statistics)
+p <- c(.001, .01, .04, .20)
+medical_multiplicity(p)
+medical_multiplicity_plot(p)
+# Reproduce the eight simulated tests in the preview:
+d <- read.csv("multiplicity-data.csv")
+p <- vapply(split(d, d$test), function(x)
+  t.test(value ~ group, data=x)$p.value, numeric(1))
+medical_multiplicity_plot(p, labels=names(p))
+```
+
+For the four hand-checkable p-values, Holm gives .004, .030, .080, .200; BH gives .004, .020, .05333, .200. All supplied tests form one pre-specified family. Keep the complete family; do not filter by significance before adjustment.
+
+With valid null p-values, Holm controls the probability of at least one false rejection (FWER), allowing arbitrary dependence. BH controls the expected false-discovery proportion (FDR) under independence or appropriate positive dependence. FDR is not the probability that a particular finding is false. A rejection does not establish effect size, clinical importance or causality. [R documentation](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/p.adjust.html).
+
+The CSV data use eight independent normal-outcome comparisons, 24 observations per group, seed 20261021; group-B generating mean shifts are 1, .8, .6, .4, .2, 0, 0, 0 against group-A mean zero, with unit SD. These are simulated teaching data, not clinical validation. Preview values come from actual Welch tests and p.adjust calculations. No new dependencies. Display coordinates below 1e-16 are floored on the log axis; returned values are unchanged.
+
+[Four-platform binaries, simulated data and validation](https://github.com/Ellu03/statistics/releases/tag/v0.8.0)
+
+![Multiplicity](https://github.com/Ellu03/statistics/releases/download/v0.8.0/multiplicity-professional.png)
+
+
 ## 2026-10-20 · Same odds ratio, different absolute risk (0.7.0)
 
 ```r
