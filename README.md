@@ -1,5 +1,29 @@
 # statistics
 
+## 2026-10-22 · Censoring is incomplete follow-up (0.9.0)
+
+```r
+library(statistics)
+time <- c(2, 2, 3, 4)
+status <- c(1, 0, 1, 0) # 1 = event; 0 = right censored
+medical_km_steps(time, status)
+medical_km_steps_plot(time, status)
+# Reproduce the preview:
+d <- read.csv("km-data.csv")
+medical_km_steps_plot(d$time, d$status)
+```
+
+The hand example has risk sets 4, 2, 1 and survival probabilities .75, .375, .375 at times 2, 3, 4. Subjects censored at a tied event time remain in that time's risk set. A censor-only time does not lower the Kaplan-Meier curve. Censoring means observation ended, not that the subject will remain event-free.
+
+The table gives each risk set, event count, censor count and survival step. The figure pairs the computed curve with individual observed follow-up lines. Valid survival interpretation assumes non-informative right censoring and entry at time zero. Times are matched exactly. No confidence intervals, delayed entry, competing-risk cumulative incidence, weights or group comparisons are implemented in this teaching module.
+
+The preview uses 12 simulated subjects, seed 20261022: independent exponential event times (rate .12) and uniform censoring times (4 to 12); observed time is their minimum and status indicates whether the event was observed. In this small example the final event occurs with only one subject still at risk, so the estimate drops to zero; this does not mean all original subjects had an observed event. No clinical validation. Existing package functions are retained; no new dependencies.
+
+[Four-platform binaries, simulated data and validation](https://github.com/Ellu03/statistics/releases/tag/v0.9.0)
+
+![Kaplan-Meier steps](https://github.com/Ellu03/statistics/releases/download/v0.9.0/km-professional.png)
+
+
 ## 2026-10-21 · One testing family, different error controls (0.8.0)
 
 ```r
